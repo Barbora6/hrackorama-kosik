@@ -1,28 +1,30 @@
-import { useState } from 'react';
-import './style.css';
+import "./style.css";
 
 interface IAmountProps {
   value: number;
+  onAmountChange: (newCount: number) => void;
 }
 
-const Amount = ({ value }: IAmountProps) => {
-  const [count, setCount] = useState(value);
-
+const Amount = ({ value, onAmountChange }: IAmountProps) => {
   const handelIncrement = () => {
-    setCount(count + 1);
-  }
+    onAmountChange(value + 1);
+  };
 
   const handelDecrement = () => {
-    if (count > 0) {
-      setCount(count - 1);
+    if (value > 0) {
+      onAmountChange(value - 1);
     }
-  }
+  };
 
   return (
     <div className="amount">
-      <button className="amount__btn" onClick={handelDecrement}>–</button>
-      <div className="amount__count">{count}</div>
-      <button className="amount__btn" onClick={handelIncrement}>+</button>
+      <button className="amount__btn" onClick={handelDecrement}>
+        –
+      </button>
+      <div className="amount__count">{value}</div>
+      <button className="amount__btn" onClick={handelIncrement}>
+        +
+      </button>
     </div>
   );
 };
